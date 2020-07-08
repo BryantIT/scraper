@@ -16,8 +16,10 @@ def scraper
       description: j.css('div.summary').text.gsub(/["\"","\n"]/, ''),
     }
     jobs << job
-    byebug
+    puts "Added #{job[:title]}"
+    puts ""
   end
+  byebug
 end
 
 scraper
