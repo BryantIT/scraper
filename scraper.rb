@@ -9,11 +9,10 @@ def scraper
   job_listings = parsed_page.css('div.jobsearch-SerpJobCard')
   job_listings.each do |j|
     job = {
-      title: job_listings.css('h2.title').text,
-      company: job_listings.css('a.turnstileLink').text,
-      location: job_listings.css('div.location').text,
-      description: job_listings.css('div.summary').text,
-
+      title: j.css('h2.title').text.gsub(/["\"","\n"]/, ''),
+      company: j.css('span.company').text.gsub(/["\"","\n"]/, ''),
+      location: j.css('div.location').text,
+      description: j.css('div.summary').text.gsub(/["\"","\n"]/, ''),
     }
     byebug
   end
